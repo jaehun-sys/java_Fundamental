@@ -24,5 +24,11 @@ public class StringDemo {
 		System.out.println(str3==str4);
 		System.out.println(str3.equals(str4));
 		
+		String str = "beautiful";
+		String strr = "";
+		for(int i=0; i<str.length(); i++) {
+			strr += str.charAt(str.length()-i-1);
+		}
+		System.out.println(strr);
 	}
 }
