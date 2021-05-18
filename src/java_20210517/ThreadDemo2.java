@@ -2,15 +2,15 @@ package java_20210517;
 
 import java.awt.FlowLayout;
 
+
 import javax.swing.JFrame;
 import javax.swing.JProgressBar;
  
-class JProgressDemo extends JFrame implements Runnable{
+class JProgressDemo extends JFrame{
     JProgressBar progress1;
     JProgressBar progress2;
-    int flag = 1;
-    public JProgressDemo(int flag) {
-    	this.flag = flag;
+    public JProgressDemo() {
+    	
         setLayout(new FlowLayout());// 배치관리자 설정
         progress1 = new JProgressBar();
         progress2 = new JProgressBar();
@@ -30,43 +30,36 @@ class JProgressDemo extends JFrame implements Runnable{
         
         // 호출
     }// 생성자 정의
-    public void run() {
-    	progress_start1() ;
-    	progress_start2() ;
-    	
-    }
-    public void progress_start1() {
-        int i;
-        try {
-            for (i = 51; i <= 100; i++) {
-                progress1.setValue(i);
-                Thread.sleep(37);// 밀리세컨드 단위로
-                // 지연시간을 설정.
-            }
-        } catch (InterruptedException ie) {
-            ie.printStackTrace();
-        }
-    }// progress_start()끝
-    public void progress_start2() {
-        int i;
-        try {
-            for (i = 51; i <= 100; i++) {
-                progress2.setValue(i);
-                Thread.sleep(37);// 밀리세컨드 단위로
-                // 지연시간을 설정.
-            }
-        } catch (InterruptedException ie) {
-            ie.printStackTrace();
-        }
-    }// progress_start()끝
+    
     
 }
 
-public class ThreadDemo2{
+public class ThreadDemo2 extends Thread{
+	JProgressBar jpb;
+	public ThreadDemo2(JProgressBar jpb) {
+		this.jpb = jpb;
+	}
+	public void run() {
+		int i;
+        try {
+            for (i = 0; i <= 100; i++) {
+            	jpb.setValue(i);
+                Thread.sleep((int)(Math.random()*100));// 밀리세컨드 단위로
+                // 지연시간을 설정.
+            }
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
+    	
+    }
+    
 	public static void main(String[] args) {
-		JProgressDemo t1 = new JProgressDemo(1);// 생성자를 호출
-    	Thread th1 = new Thread(t1);
-    	th1.start();
+		JProgressDemo t1 = new JProgressDemo();// 생성자를 호출
+		ThreadDemo2 thread1 = new ThreadDemo2(t1.progress1);
+		thread1.start();
+		
+		ThreadDemo2 thread2 = new ThreadDemo2(t1.progress2);
+		thread2.start();
     	
     }
 	
