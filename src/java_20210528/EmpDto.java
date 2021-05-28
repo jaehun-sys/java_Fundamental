@@ -9,7 +9,8 @@ public class EmpDto {
 	private double sal;
 	private double comm;
 	private int deptNo;
-	
+
+
 	public EmpDto() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -25,6 +26,7 @@ public class EmpDto {
 		this.sal = sal;
 		this.comm = comm;
 		this.deptNo = deptNo;
+		
 	}
 	
 	public int getNo() {
@@ -75,6 +77,7 @@ public class EmpDto {
 	public void setDeptNo(int deptNo) {
 		this.deptNo = deptNo;
 	}
+
 	
 	
 }
